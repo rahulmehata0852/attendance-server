@@ -16,13 +16,13 @@ app.use(express.json())
 
 app.use("/api/admin", require("./routes/adminRoute"))
 app.use("*", (req, res) => {
-    res.status(404).json({ message: "No resource found" })
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+    // res.status(404).json({ message: "No resource found" })
 })
 
 
 app.use((err, req, res, next) => {
-    res.sendFile(path.join(__dirname, "dist", "index.html"))
-    // res.status(400).json({ message: err.message })
+    res.status(400).json({ message: err.message })
 })
 
 mongoose.connection.once("open", () => {
