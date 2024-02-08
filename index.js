@@ -15,7 +15,7 @@ app.use(express.static(path.join(__dirname, "dist", "index.html")))
 app.use(express.json())
 
 app.use("/api/admin", require("./routes/adminRoute"))
-app.use("/", (req, res) => {
+app.use("*", (req, res) => {
     res.sendFile(path.join(__dirname, "dist", "index.html"))
     // res.status(404).json({ message: "No resource found" })
 })
