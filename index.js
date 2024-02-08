@@ -21,7 +21,8 @@ app.use("*", (req, res) => {
 
 
 app.use((err, req, res, next) => {
-    res.status(400).json({ message: err.message })
+    res.sendFile(path.join(__dirname, "dist", "index.html"))
+    // res.status(400).json({ message: err.message })
 })
 
 mongoose.connection.once("open", () => {
